@@ -3,41 +3,44 @@
 
 ;;; Variables
 
-(defvar ss2-light-theme nil "Ss2's light theme.")
-(defvar ss2-dark-theme nil "Ss2's dark theme.")
+(defvar ss2-light-theme 'modus-operandi "Ss2's light theme.")
+(defvar ss2-dark-theme 'modus-vivendi "Ss2's dark theme.")
 
 ;;; Functions
 
-(defun ns-system-appearance-change-load-ss2-theme (appearance)
-  "Load appropriate light/dark theme when ns-system-appearance changes."
-  (if (eq appearance 'dark)
-      (when ss2-dark-theme
-        (load-theme ss2-dark-theme :no-confirm))
-    (when ss2-light-theme
-      (load-theme ss2-light-theme :no-confirm))))
+;;(defun ns-system-appearance-change-load-ss2-theme (appearance)
+;;  "Load appropriate light/dark theme when ns-system-appearance changes."
+;;  (if (eq appearance 'dark)
+;;      (when ss2-dark-theme
+;;        (load-theme ss2-dark-theme :no-confirm))
+;;    (when ss2-light-theme
+;;      (load-theme ss2-light-theme :no-confirm))))
 
 ;;; Font
 
-(add-to-list 'default-frame-alist '(font . "Hasklug Nerd Font"))
+;; (add-to-list 'default-frame-alist '(font . "Hasklug Nerd Font"))
 
 ;;; Theme
 
-(use-package ef-themes
-  :ensure nil
-  :init
-  (setq ss2-light-theme 'ef-day)
-  (setq ss2-dark-theme 'ef-autumn)
-  :custom
-  (ef-themes-to-toggle '(ef-day ef-autumn))
-  :bind
-  (("<f5>" . ef-themes-toggle)))
+;;(use-package ef-themes
+;;  :ensure nil
+;;  :init
+;;  (setq ss2-light-theme 'ef-day)
+;;  (setq ss2-dark-theme 'ef-autumn)
+;;  :custom
+;;  (ef-themes-to-toggle '(ef-day ef-autumn))
+;;  :bind
+;;  (("<f5>" . ef-themes-toggle)))
 
 
 ;;; Visual Settigns
 
 ;; "enable" my ns-system-appearance change function
-(setq ns-system-appearance-change-functions
-      '(ns-system-appearance-change-load-ss2-theme))
+;; (setq ns-system-appearance-change-functions
+;;      '(ns-system-appearance-change-load-ss2-theme))
+
+;; load theme
+(load-theme ss2-dark-theme :no-confirm)
 
 ;; enable modes
 (column-number-mode 1)

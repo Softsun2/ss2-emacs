@@ -1,6 +1,6 @@
 ;; Package configuration
 
-(add-to-list 'load-path "~/.dotfiles/config/emacs/packages")
+(add-to-list 'load-path "C:/Users/Softsun2/git/ss2-emacs/packages")
 
 (require 'use-package)
 
