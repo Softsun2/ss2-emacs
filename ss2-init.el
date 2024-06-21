@@ -6,7 +6,7 @@
 		     (float-time
 		      (time-subtract after-init-time before-init-time)))))
 
-(add-to-list 'load-path "C:/Users/Softsun2/git/ss2-emacs")
+(add-to-list 'load-path "d:/git/ss2-emacs")
 
 (require 'ss2-lib) ; load first
 ; (require 'ss2-package)

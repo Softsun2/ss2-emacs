@@ -3,11 +3,7 @@
 
 ;; Variables
 
-(setq ss2-emacs-config-dir
-      (concat
-       "C:/Users/"
-       user-login-name
-       "/git/ss2-emacs"))
+(setq ss2-emacs-config-dir "d:/git/ss2-emacs")
 
 ;; Functions
 

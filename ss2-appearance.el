@@ -54,7 +54,7 @@
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 
 ;; set global text scale
-(set-face-attribute 'default nil :height 170)
+(set-face-attribute 'default nil :height 130)
 
 ;;; Provide
 (provide 'ss2-appearance)
