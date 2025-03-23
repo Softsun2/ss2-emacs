@@ -39,6 +39,9 @@
 ;; (setq ns-system-appearance-change-functions
 ;;      '(ns-system-appearance-change-load-ss2-theme))
 
+;;; Frame
+(menu-bar-mode -1)
+
 ;; load theme
 (load-theme ss2-dark-theme :no-confirm)
 
@@ -53,6 +56,8 @@
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 (add-hook 'text-mode-hook 'display-line-numbers-mode)
 
+;; set default font
+(set-frame-font "Cousine Nerd Font Mono") ; default font
 ;; set global text scale
 (set-face-attribute 'default nil :height 130)
 

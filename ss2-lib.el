@@ -3,7 +3,7 @@
 
 ;; Variables
 
-(setq ss2-emacs-config-dir "d:/git/ss2-emacs")
+(setq ss2-org-dir "c:/Users/Peyton.Okubo/po-c/org")
 
 ;; Functions
 
