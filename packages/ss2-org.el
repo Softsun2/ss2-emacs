@@ -13,7 +13,7 @@
   :custom
   (org-directory ss2-org-dir)
   
-  (org-agenda-files (list "driver.org"))
+  (org-agenda-files (list "driver.org" "projects.org"))
   
   (org-capture-templates
    `(("i" "Inbox" entry (file+headline "driver.org" "Inbox")
@@ -21,7 +21,7 @@
 	       "/Entered on/ %U")
       :prepend t)))
   
-  (org-agenda-hide-tags-regexp ".")
+  ;; todo: show tags nicely
   (org-agenda-prefix-format
       '((agenda . " %i %-12:c%?-12t% s")
         (todo   . " ")
@@ -29,8 +29,11 @@
         (search . " %i %-12:c")))
   (org-todo-keywords '((sequence "TODO(t)" "PROG(p)" "|" "DONE(d)")))
   
-  (org-refile-targets `(("driver.org" :regexp . ,(regexp-opt '("Tasks")))))
-  
+  (org-refile-targets `(("driver.org" :regexp . ,(regexp-opt '("Tasks")))
+			("projects.org" :regexp . ,(regexp-opt '("Tasks")))))
+
+  (org-reverse-note-order t)
+  ;; todo: (org-refile-targe-verify-function filter-toplevel)
   (org-refile-use-outline-path 'file)
   (org-outline-path-complete-in-steps nil)
   
