@@ -1,65 +1,58 @@
 ;;; Emacs Appearance
 
-
-;;; Variables
-
-(defvar ss2-light-theme 'modus-operandi "Ss2's light theme.")
-(defvar ss2-dark-theme 'modus-vivendi "Ss2's dark theme.")
-
-;;; Functions
-
-;;(defun ns-system-appearance-change-load-ss2-theme (appearance)
-;;  "Load appropriate light/dark theme when ns-system-appearance changes."
-;;  (if (eq appearance 'dark)
-;;      (when ss2-dark-theme
-;;        (load-theme ss2-dark-theme :no-confirm))
-;;    (when ss2-light-theme
-;;      (load-theme ss2-light-theme :no-confirm))))
-
 ;;; Font
-
-;; (add-to-list 'default-frame-alist '(font . "Hasklug Nerd Font"))
+(set-frame-font "Cousine Nerd Font Mono") ; default font
+(set-face-attribute 'default nil :height 140) ; font size = 10 * px
 
 ;;; Theme
-
-;;(use-package ef-themes
-;;  :ensure nil
-;;  :init
-;;  (setq ss2-light-theme 'ef-day)
-;;  (setq ss2-dark-theme 'ef-autumn)
-;;  :custom
-;;  (ef-themes-to-toggle '(ef-day ef-autumn))
-;;  :bind
-;;  (("<f5>" . ef-themes-toggle)))
-
-
-;;; Visual Settigns
-
-;; "enable" my ns-system-appearance change function
-;; (setq ns-system-appearance-change-functions
-;;      '(ns-system-appearance-change-load-ss2-theme))
+(defvar ss2-light-theme 'modus-operandi
+  "Ss2's light theme.")
+(defvar ss2-dark-theme 'modus-vivendi
+  "Ss2's dark theme.")
+(defun ss2-ns-system-appearance-change-load-theme (appearance)
+  "Load appropriate light/dark theme when ns-system-appearance changes."
+  (if (eq appearance 'dark)
+      (when ss2-dark-theme
+        (load-theme ss2-dark-theme :no-confirm))
+    (when ss2-light-theme
+      (load-theme ss2-light-theme :no-confirm))))
+(setq-default ns-system-appearance-change-functions
+	      '(ss2-ns-system-appearance-change-load-theme))
+(load-theme ss2-dark-theme :no-confirm)
 
 ;;; Frame
 (menu-bar-mode -1)
+(setf (alist-get 'undecorated default-frame-alist) nil
+      (alist-get 'internal-border-width default-frame-alist) 0
+      (alist-get 'left-fringe default-frame-alist) 24
+      (alist-get 'right-fringe default-frame-alist) 24)
+(custom-set-faces
+ '(fringe ((t (:background unspecified)))))
 
-;; load theme
-(load-theme ss2-dark-theme :no-confirm)
+;;; Keybinds
+(defvar ss2-undecorated nil)
+(defun ss2-toggle-undecorated ()
+  (interactive)
+  (set-frame-parameter nil 'undecorated ss2-undecorated)
+  (setq header-line-format ss2-undecorated)
+  (setq ss2-undecorated (not ss2-undecorated)))
+(bind-key "C-c u" 'ss2-toggle-undecorated)
 
-;; enable modes
-(column-number-mode 1)
+;;; Window
+(setq-default header-line-format "")
 
-;; disable modes
-(scroll-bar-mode -1)    ; disable scroll bar
-(tool-bar-mode -1)      ; disable tool bar
+;;; Startup
+(setq-default
+ inhibit-startup-screen t
+ initial-buffer-choice t)
 
-;; enable line numbers where appropriate
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-line-numbers-mode)
-
-;; set default font
-(set-frame-font "Cousine Nerd Font Mono") ; default font
-;; set global text scale
-(set-face-attribute 'default nil :height 130)
+;;; Misc.
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(setq-default truncate-lines t) ; may only want this when editing text
+(defun ss2-show-trailing-whitespace () (setq show-trailing-whitespace t))
+(add-hook 'prog-mode-hook 'ss2-show-trailing-whitespace)
+(add-hook 'text-mode-hook 'ss2-show-trailing-whitespace)
 
 ;;; Provide
 (provide 'ss2-appearance)
