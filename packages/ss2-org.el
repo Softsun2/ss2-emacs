@@ -20,16 +20,16 @@
       ,(concat "* TODO %?\n"
 	       "/Entered on/ %U")
       :prepend t)))
-  
-  ;; todo: show tags nicely
+
+  (org-agenda-window-setup 'current-window)
   (org-agenda-prefix-format
       '((agenda . " %i %-12:c%?-12t% s")
         (todo   . " ")
         (tags   . " %i %-12:c")
         (search . " %i %-12:c")))
-  (org-todo-keywords '((sequence "TODO(t)" "PROG(p)" "|" "DONE(d)")))
+  (org-todo-keywords '((sequence "TODO(t)" "PROG(p)" "|" "DONE(d)" "CANCELED(c)")))
   
-  (org-refile-targets `(("driver.org" :regexp . ,(regexp-opt '("Tasks")))
+  (org-refile-targets `(("driver.org" :regexp . ,(regexp-opt '("Tasks" "Events")))
 			("projects.org" :regexp . ,(regexp-opt '("Tasks")))))
 
   (org-reverse-note-order t)
